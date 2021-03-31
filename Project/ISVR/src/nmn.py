@@ -1,3 +1,10 @@
+"""
+Developer   : Naman Dave
+College ID  : 201801439
+About       : Added functionalities
+Sources     :
+Voice Assistant: https://www.geeksforgeeks.org/voice-assistant-using-python/
+"""
 import pyjokes
 import json
 import wolframalpha
