@@ -1,11 +1,14 @@
 Contribution:
+
 Naman Dave (201801439): System Architect, core(‘s) developer, Added functionality; Tell Joke, Math String Evaluator, Wolfram Alpha API (nmn)
 Core : (Recommendation System, Intent extractor (recombyte), VA functionalities (va), Data Hashing, storage, loader, and Inverse Hashing(recombyte).
+
 Nishit Jagetia(201801027): 
 1) Constantly arranging meetings and interacting with the group members related to the project stuff and lab submissions.
 2) Contributed in a significant amount in this project report and lab reports.
 3) Added functions and a dictionary of words related to open Visual Studio Code Application through Voice Command on different platforms (MacOS, Linux, Windows).
 4) Added functions and dictionary of words related to open Eclipse Application on voice command on the above platforms.
+
 Aakash Panchal(201801459): Added two functionalities:
 1) Given a file-name with extension, search it on the whole pc.
 2) Given a folder name, find the folder.
