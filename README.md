@@ -1,6 +1,7 @@
 # Grp 28 Intelligent Systems of Voice Recognition
 A desktop application that will perform the task given by the end-user through voice command. This project aims to ease and fasten the process for the end-user and therefore make life simpler
 
+Contribution:
 
 Naman Dave (201801439): System Architect, core(‘s) developer, Added functionality; Tell Joke, Math String Evaluator, Wolfram Alpha API (nmn)
 Core : (Recommendation System, Intent extractor (recombyte), VA functionalities (va), Data Hashing, storage, loader, and Inverse Hashing(recombyte).
