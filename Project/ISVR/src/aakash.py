@@ -10,6 +10,7 @@ Sources     : Python Documentation
 import os
 import platform
 import subprocess
+from src.va import ask, speak
 
 
 ## -----------------------Folder finder START------------------------------------------
@@ -21,14 +22,10 @@ def find_folder(name, path):
         if name in dirs:
             result.append(os.path.join(root, name))
     return result
-    
-# Protocol: "Open {folder_name} folder"
-def process_for_folder(string):
-    parts = string.split(" ")
-    return parts[1]
-    
+
 def folder_finder(speak):
-    file_name = process_for_folder(speak)
+    speak("please specify the folder name")
+    file_name = ask()
     sysos = platform.system()
 
     if sysos == "Windows":
@@ -118,7 +115,7 @@ def file_finder(speak):
 
 hash_dict = {
     "find folder" : folder_finder,
-    "open folder" : folder_finder,
+    "search folder" : folder_finder,
     "find file" : file_finder,
-    "open file" : file_finder
+    "search file" : file_finder
 }
