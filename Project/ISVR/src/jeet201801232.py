@@ -5,27 +5,26 @@ import random
 import string
 from sys import platform
 import psutil as p
-from va import speak,ask
+from src.va import speak,ask
+
+def downloads_path():
+    if os.name == 'nt':
+        import winreg
+        sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
+        downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+        with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
+            location = winreg.QueryValueEx(key, downloads_guid)[0]
+        return location
+    else:
+        return os.path.join(os.path.expanduser('~'), 'downloads')
 
 def show_downloads():
-    if platform == "linux" or platform == "linux2":
-        download_dir = "home\\jeetumat\\Downloads"
-        total_list = os.listdir(download_dir)
-        print(total_list)
-    elif platform == "win32":
-        download_dir = "C:\\Users\\Jeet\\Downloads"
-        total_list = os.listdir(download_dir)
-        print(total_list)
-    elif platform == "darwin":
-        download_dir = "Users/Jeet/Downloads"
-        total_list = os.listdir(download_dir)
-        print(total_list)
+    path_of_download=downloads_path()
+    total_list=os.listdir(path_of_download)
+    print(total_list)
 
 def  show_downloads_caller(input_string):
     show_downloads()
-
-
-
 
 
 def size(byte):
@@ -111,14 +110,13 @@ def pasword():
         s.extend(s2)
         s.extend(s3)
         s.extend(s4)
-        # print(s,"\n")
         p=("".join(random.sample(s, plen)))
         print(p)
 
 
 def password_caller(input_string):
-
     pasword()
+
 
 
 def show_battery():
@@ -173,25 +171,24 @@ def note_caller(input_string):
 hash_dict={
                 "show download":show_downloads_caller,"print download": show_downloads_caller,
                 "show downloads":show_downloads_caller,"print downloads":show_downloads_caller,
-                "fetch downloads":show_downloads_caller,"fetch download":show_downloads_caller,
                 "display downloads":show_downloads_caller,"display download":show_downloads_caller,
                 "take note":note_caller,"note that":note_caller,"remember this":note_caller,
-                 "my location":location_caller,"open location":location_caller, "display my location":location_caller,
-                "display location":location_caller,"fetch location":location_caller,
-                 "remaining battery":battery_caller,  "display  cpu":cpu_caller,"information  cpu":cpu_caller,"show  cpu":cpu_caller,
-                 "cpu usage":cpu_caller,"data  cpu":cpu_caller,
-                 "details  cpu":cpu_caller,"statistics cpu":cpu_caller,"fetch cpu details":cpu_caller,
-                 "frequency  cpu":cpu_caller," cores in cpu":cpu_caller,"details of cores":cpu_caller,
-                 "display about drive": disk_caller, "information  drive": disk_caller, "show about drive": disk_caller,
-                "drive usage": disk_caller,  "data of drives": disk_caller,
-                "details of drive": disk_caller, "statistics of drive": disk_caller, "fetch drive details": disk_caller,
-                "display about disk": disk_caller, "information of disk": disk_caller, "show about disk": disk_caller,
-                "disk usage": disk_caller, "fetch disk usage": disk_caller, "data of disk": disk_caller,
-                "details of disk": disk_caller, "statistics of disk": disk_caller, "fetch disk details": disk_caller,
-               "display about memory": memory_caller, "information of memory": memory_caller, "show about memory": memory_caller,
-              "memory usage": memory_caller,"data about memory": memory_caller,
-               "details of memory": memory_caller, "statistics of memory": memory_caller, "fetch memory details": memory_caller,
-               "generate password":password_caller,"initiate password":password_caller,"create password":password_caller,
+                 "my location":location_caller,"open location":location_caller, 
+                "display location":location_caller,"fetch location":location_caller,"show location":location_caller,
+                 "remaining battery":battery_caller,  "display  cpu":cpu_caller,"information cpu":cpu_caller,"show cpu":cpu_caller,
+                 "cpu usage":cpu_caller,"data  cpu":cpu_caller,"information cpu":cpu_caller,"display cpu":cpu_caller,
+                 "details cpu":cpu_caller,"statistics cpu":cpu_caller,
+                 "frequency  cpu":cpu_caller," cores cpu":cpu_caller,
+                 "display  drive": disk_caller, "information  drive": disk_caller, "show  drive": disk_caller,
+                "drive usage": disk_caller,  "data  drives": disk_caller,
+                "details  drive": disk_caller, "statistics  drive": disk_caller,
+                "display  disk": disk_caller, "information disk": disk_caller, 
+                "disk usage": disk_caller, "data  disk": disk_caller,
+                "details  disk": disk_caller, "statistics  disk": disk_caller, 
+               "display  memory": memory_caller, "information memory": memory_caller, "show  memory": memory_caller,
+              "memory usage": memory_caller,"data  memory": memory_caller,
+               "details  memory": memory_caller, "statistics  memory": memory_caller, "memory details": memory_caller,
+               "generate password":password_caller,"create password":password_caller,
                 "produce password":password_caller, "make password":password_caller,"form password":password_caller,
-                "construct password":password_caller,"build password":password_caller,
+               
 }
