@@ -2,8 +2,9 @@
 
 Name    -   Nishit Jagetia
 ID      -   201801027
-Work    -   1) Visual Studio Code app through voice command on different platforms along with the dictionary 
-            2) Eclipse app throguh voice command on different platforms along with the dictionary
+Work    -   1) Visual Studio Code app through voice command on all platforms along with the dictionary 
+            2) Eclipse app throguh voice command on mac and linux along with the dictionary
+            3) Xcode app through voice command in mac along with the dictionary
             Platforms : 
             1 -> MacOS
             2-> Windows
@@ -18,55 +19,55 @@ import subprocess
 
 def macvsc():
     #vsc in mac
-    os.system('/Applications/Visual Studio Code.app')
+    os.system('open /Applications/Visual\ Studio\ Code.app')
 
 def maceclipse():
     #eclipse in mac
-    os.system('/Applications/Eclipse.app')
+    os.system('open /Applications/Eclipse.app')
 
 def winvsc():
     #vsc in windows
-    subprocess.Popen('user/apps/shortcut/vscode.exe')
+    os.system('code')
 
 def wineclipse():
     #eclipse in windows
-    subprocess.Popen('d:/softwares/ecplise/eclipse.exe')
+    #enter path
+    subprocess.Popen('path')
 
 def linvsc():
     #vsc in linux
-    subprocess.call('/usr/share/applications/Visual Studio Code.app')
+    subprocess.call('code')
 
 def lineclipse():
     #eclipse in linux
-    subprocess.call('/usr/share/applications/Eclipse.app')
+    #enter path
+    subprocess.call('path')
 
+def macxcode():
+    #xcode in mac
+    os.system('open /Applications/Xcode.app')
 
 
 # open visual studio code on different platforms
 def vscode():
     if platform == "linux" or platform == "linux2":
-        # open vscode in linux
-        linvsc
+        linvsc()
     elif platform == "darwin":
-        # open vscode in macOS
-        macvsc
+        macvsc()
     elif platform == "win32":
-        # opem vscode in windows
-        winvsc
+        winvsc()
 
 
 # open eclipse on differnet platforms
 def eclipse():
     if platform == "linux" or platform == "linux2":
-        # open eclipse in linux
-        lineclipse
+        lineclipse()
     elif platform == "darwin":
-        # open eclipse in macOS
-        maceclipse
-    elif platform == "win32":
-        # open eclipse in windows
-        wineclipse
+        maceclipse()
 
+def xcode():
+    if platform == "darwin":
+        macxcode()
 
 
 # caller function of vscode
@@ -76,6 +77,9 @@ def vsc_caller(query):
 # caller function of eclipse
 def eclipse_caller(query):
     eclipse()
+
+def xcode_caller(query):
+    xcode()
 
 
 
@@ -102,4 +106,13 @@ hash_dict = {
     "start eclipse" : eclipse_caller,
     "turn on eclipse" : eclipse_caller,
     
+    #dictionary of xcode
+    "xcode" : xcode_caller,
+    "start xcode" : xcode_caller,
+    "turn on xcode" : xcode_caller,
+    "open xcode" : xcode_caller
 } 
+
+#xcode_caller("open")
+#vsc_caller("open")
+#eclipse_caller("open")
