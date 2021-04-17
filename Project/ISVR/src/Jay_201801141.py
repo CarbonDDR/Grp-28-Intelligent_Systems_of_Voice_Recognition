@@ -7,10 +7,6 @@ from sys import platform
 import psutil as p
 from src.va import speak,ask
 import datetime
-import winshell
-import pyautogui
-import pyjokes
-import ctypes
 import subprocess
 import screen_brightness_control as sbc
 import requests
