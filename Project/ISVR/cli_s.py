@@ -3,11 +3,17 @@ Developer   : Naman Dave
 College ID  : 201801439
 About       : CLI based implementation(beta)
 """
-
+def merge_dict(a, b):
+    return {**a, **b}
 import os
 import src.va as va
 import recombyte as rb
 from src.nmn import dict1
+from src.Jay_201801141 import hash_dict
+dict1 = merge_dict(dict1, hash_dict)
+
+
+
 
 my_list = [
     "Open Chrome",
@@ -28,6 +34,7 @@ my_list = [
     "open youtube and play song",
     "open youtube and play music",
 ]
+
 my_list += list(dict1.keys())
 query_list = list(my_list)
 
