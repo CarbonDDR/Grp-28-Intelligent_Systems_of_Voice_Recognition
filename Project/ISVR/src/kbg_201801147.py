@@ -4,10 +4,13 @@ import platform
 
 def openTextEditor():
     pt = platform.system()
-    if pt == 'win32' or pt == 'Windows':
+    pt = pt.lower()
+    if pt == 'win32' or pt == 'windows':
         os.system('notepad')
-    elif pt == 'linux' or pt == 'linux2' or pt == 'Linux':
+    elif pt == 'linux' or pt == 'linux2':
         os.system('gedit')
+    elif pt == 'darwin':
+        os.system('open /Applications/Pages.app')
 
 
 def open_caller(line):
@@ -31,5 +34,4 @@ hash_dict = {
     "text editor start": open_caller,
     "text editor open": open_caller
 }
-
-# open_caller("open")
+#open_caller("open")
