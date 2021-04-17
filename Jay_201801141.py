@@ -106,7 +106,7 @@ def google_map_caller(input_string):
     google_map(input_string)
 
 
-def weather():
+def weather(query):
     key = "772992eec7a54fc87f19fcf6fc03d643"
     weather_url="http://api.openweathermap.org/data/2.5/weather?"
     ind=query.split().index("in")
@@ -126,7 +126,7 @@ def weather():
         speak("City not found")
 
 def weather_caller(input_string):
-    weather()
+    weather(input_string)
 
 hash_dict={
                 "open mozela":mozela_caller,"open firefox":mozela_caller,"open mozela firefox":mozela_caller,
