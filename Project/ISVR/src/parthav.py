@@ -12,7 +12,7 @@ def webex():
     webbrowser.open("https://www.webex.com")
 
 def webex_caller(query):
-    webex
+    webex()
 
 def stop_watch():
     global root
@@ -95,7 +95,7 @@ class StopWatch(Frame):
         self.SetTime(self.nextTime)
 
 def stop_watch_caller(query):
-    stop_watch
+    stop_watch()
 
 
 
