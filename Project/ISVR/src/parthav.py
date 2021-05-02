@@ -11,7 +11,7 @@ import time
 def webex():
     webbrowser.open("https://www.webex.com")
 
-def webex_caller():
+def webex_caller(query):
     webex
 
 def stop_watch():
@@ -94,7 +94,7 @@ class StopWatch(Frame):
         self.nextTime = 0.0
         self.SetTime(self.nextTime)
 
-def stop_watch_caller():
+def stop_watch_caller(query):
     stop_watch
 
 
