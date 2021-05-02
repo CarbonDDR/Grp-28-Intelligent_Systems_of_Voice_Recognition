@@ -6,6 +6,13 @@ import string
 from sys import platform
 import psutil as p
 from src.va import speak,ask
+import requests
+from tkinter import *
+import csv
+from tkinter import messagebox
+from tkinter import *
+import tkinter as tk
+from tkinter import ttk
 
 def downloads_path():
     if os.name == 'nt':
