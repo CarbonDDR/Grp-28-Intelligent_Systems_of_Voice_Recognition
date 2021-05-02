@@ -94,8 +94,6 @@ class StopWatch(Frame):
         self.nextTime = 0.0
         self.SetTime(self.nextTime)
 
-
-#if __name__ == '__main__':
 def stop_watch_caller():
     stop_watch
 
