@@ -157,6 +157,28 @@ def notethat():
 def note_caller(input_string):
     notethat()
 
+def top_process():
+        listOfProcObjects = []
+        # Iterate over the list
+        for proc in psutil.process_iter():
+            try:
+                # Fetch process details as dict
+                pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
+                pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
+                listOfProcObjects.append(pinfo);
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                pass
+
+
+        listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
+        print(listOfProcObjects)
+        for elem in listOfProcObjects:
+            print(elem)
+
+def top_process_caller(input_string):
+    top_process()
+
+
 def phone_caller(input_string):
     phonelist = []
 
@@ -330,6 +352,8 @@ hash_dict={
                "details  memory": memory_caller, "statistics  memory": memory_caller, "memory details": memory_caller,
                "generate password":password_caller,"create password":password_caller,
                 "produce password":password_caller, "make password":password_caller,"form password":password_caller,
-                "phone":phone_caller,"contact":phone_caller
+                "phone":phone_caller,"contact":phone_caller,
+                "list top processes":top_process_caller,"show top processes":top_process_caller,
+                 "print top processes":top_process_caller,"display top processes":top_process_caller
                
 }
