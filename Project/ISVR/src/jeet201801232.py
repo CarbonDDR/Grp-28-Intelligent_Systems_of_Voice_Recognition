@@ -157,12 +157,34 @@ def notethat():
 def note_caller(input_string):
     notethat()
 
+def top_process():
+        listOfProcObjects = []
+        # Iterate over the list
+        for proc in psutil.process_iter():
+            try:
+                # Fetch process details as dict
+                pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
+                pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
+                listOfProcObjects.append(pinfo);
+            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                pass
+
+
+        listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
+        print(listOfProcObjects)
+        for elem in listOfProcObjects:
+            print(elem)
+
+def top_process_caller(input_string):
+    top_process()
+
+
 def phone_caller(input_string):
     phonelist = []
 
     def ReadCSVFile():
         global header
-        with open('F:\\temp\Grp-28-Intelligent_Systems_of_Voice_Recognition\Project\ISVR\src\StudentData.csv') as csvfile:
+        with open('StudentData.csv') as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=',')
             header = next(csv_reader)
             for row in csv_reader:
@@ -171,7 +193,7 @@ def phone_caller(input_string):
         print(phonelist)
 
     def WriteInCSVFile(phonelist):
-        with open('F:\\temp\Grp-28-Intelligent_Systems_of_Voice_Recognition\Project\ISVR\src\StudentData.csv', 'w', newline='') as csv_file:
+        with open('StudentData.csv', 'w', newline='') as csv_file:
             writeobj = csv.writer(csv_file, delimiter=',')
             writeobj.writerow(header)
             for row in phonelist:
@@ -330,6 +352,8 @@ hash_dict={
                "details  memory": memory_caller, "statistics  memory": memory_caller, "memory details": memory_caller,
                "generate password":password_caller,"create password":password_caller,
                 "produce password":password_caller, "make password":password_caller,"form password":password_caller,
-               
+                "phone":phone_caller,"contact":phone_caller,
+                "list top processes":top_process_caller,"show top processes":top_process_caller,
+                 "print top processes":top_process_caller,"display top processes":top_process_caller
                
 }
