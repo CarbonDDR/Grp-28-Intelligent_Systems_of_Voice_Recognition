@@ -136,24 +136,7 @@ def battery_caller(input_string):
 
 
 
-def open_location():
-    if platform == "linux" or platform == "linux2":
-        chrome_path = '/usr/bin/google-chrome'
 
-    elif platform == "darwin":
-        chrome_path = 'open -a /Applications/Google\ Chrome.app'
-
-    elif platform == "win32":
-        chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
-    else:
-        print('Unsupported OS')
-    webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-    webbrowser.get('chrome').open_new_tab('https://google.nl/maps/place')
-    speak('Here is the location ')
-
-
-def location_caller(input_string):
-    open_location()
 
 
 def notethat():
@@ -325,8 +308,6 @@ hash_dict={
                 "show downloads":show_downloads_caller,"print downloads":show_downloads_caller,
                 "display downloads":show_downloads_caller,"display download":show_downloads_caller,
                 "take note":note_caller,"note that":note_caller,"remember this":note_caller,
-                 "my location":location_caller,"open location":location_caller, 
-                "display location":location_caller,"fetch location":location_caller,"show location":location_caller,
                  "remaining battery":battery_caller,  "display  cpu":cpu_caller,"information cpu":cpu_caller,"show cpu":cpu_caller,
                  "cpu usage":cpu_caller,"data  cpu":cpu_caller,"information cpu":cpu_caller,"display cpu":cpu_caller,
                  "details cpu":cpu_caller,"statistics cpu":cpu_caller,
