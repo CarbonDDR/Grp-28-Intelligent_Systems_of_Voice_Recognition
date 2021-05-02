@@ -6,33 +6,31 @@ import os
 import webbrowser
 import wikipedia
 import random
+import subprocess
 import string
 import time
 from sys import platform
 import psutil as p
 import datetime
-from va import speak,ask
-engine = pyttsx3.init()
-voices = engine.getProperty("voices")
-engine.setProperty("voice", voices[1].id)
-
+from src.va import speak,ask
+# engine = pyttsx3.init()
+# voices = engine.getProperty("voices")
+# engine.setProperty("voice", voices[1].id)
 
 
 def open_chrome():
 
     if platform == "linux" or platform == "linux2":
-        chrome_path = '/usr/bin/google-chrome'
-
+        subprocess.run('chrome',shell=True)
     elif platform == "darwin":
-        chrome_path = 'open -a /Applications/Google\ Chrome.app'
-
+        subprocess.run('open -a Chrome --args -private-window',shell=True)
     elif platform == "win32":
-        chrome_path = 'C:\Program Files (x86)\Google\Chrome\Application\chrome.exe'
+        subprocess.run('start chrome',shell=True)
     else:
-        print('Unsupported OS')
+        speak("Unsupported OS")
     
-    webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
-    webbrowser.get('chrome').open_new_tab('https://google.com')
+    # webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+    # webbrowser.get('chrome').open_new_tab('https://google.com')
         
 def chrome_caller(input_string):
     open_chrome()
@@ -59,8 +57,8 @@ def search_wiki():
 def search_wiki_caller(input_string):
     search_wiki()
 
-hash_201801012={"open chrome":chrome_caller,"start chrome":chrome_caller,"begin chrome":chrome_caller,"begin the chrome":chrome_caller,
-                "initiate chrome":chrome_caller,"open the chrome":chrome_caller,"start the chrome":chrome_caller,"what is date":date_caller,
+hash_201801012={"Open Chrome":chrome_caller,"open chrome":chrome_caller,"start chrome":chrome_caller,"begin chrome":chrome_caller,"begin the chrome":chrome_caller,
+                "initiate chrome":chrome_caller,"open chrome":chrome_caller,"start chrome":chrome_caller,"what is date":date_caller,
                 "show the date":date_caller,"show date":date_caller,
                 "display the date":date_caller,"display date":date_caller,"say date":date_caller,"search on wiki":search_wiki_caller,
                 "search on wikipedia":search_wiki_caller 

@@ -14,7 +14,7 @@ import pathlib
 import os
 import platform
 import subprocess
-from va import ask, speak
+from src.va import ask, speak
 
 
 ## -----------------------Folder finder FOR MOVIES FOLDER------------------------------------------

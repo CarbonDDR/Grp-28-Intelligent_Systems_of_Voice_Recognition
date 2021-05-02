@@ -162,7 +162,7 @@ def phone_caller(input_string):
 
     def ReadCSVFile():
         global header
-        with open('StudentData.csv') as csvfile:
+        with open('F:\\temp\Grp-28-Intelligent_Systems_of_Voice_Recognition\Project\ISVR\src\StudentData.csv') as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=',')
             header = next(csv_reader)
             for row in csv_reader:
@@ -171,7 +171,7 @@ def phone_caller(input_string):
         print(phonelist)
 
     def WriteInCSVFile(phonelist):
-        with open('StudentData.csv', 'w', newline='') as csv_file:
+        with open('F:\\temp\Grp-28-Intelligent_Systems_of_Voice_Recognition\Project\ISVR\src\StudentData.csv', 'w', newline='') as csv_file:
             writeobj = csv.writer(csv_file, delimiter=',')
             writeobj.writerow(header)
             for row in phonelist:
@@ -330,6 +330,6 @@ hash_dict={
                "details  memory": memory_caller, "statistics  memory": memory_caller, "memory details": memory_caller,
                "generate password":password_caller,"create password":password_caller,
                 "produce password":password_caller, "make password":password_caller,"form password":password_caller,
-                "phone":phone_caller,"contact":phone_caller
+               
                
 }
