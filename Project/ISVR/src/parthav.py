@@ -11,8 +11,8 @@ import time
 def webex():
     webbrowser.open("https://www.webex.com")
 
-def webex_caller():
-    webex
+def webex_caller(input_string):
+    webex()
 
 def stop_watch():
     global root
@@ -85,21 +85,22 @@ class StopWatch(Frame):
             self.SetTime(self.nextTime)
             self.onRunning = 0
 
-    def Exit(self):
-            root.destroy()
-            exit()
+    # def Exit(self):
+    #         root.destroy()
+    #         exit()
 
     def Reset(self):
         self.startTime = time.time()
         self.nextTime = 0.0
         self.SetTime(self.nextTime)
 
-def stop_watch_caller():
-    stop_watch
+def stop_watch_caller(input_string):
+    stop_watch()
 
 
 
 hash_dict={
+    "open Stopwatch":stop_watch_caller,
     "open webex": webex_caller,
     "webex": webex_caller,
     "open webex meeting": webex_caller,

@@ -8,25 +8,6 @@ import src.va as va
 import recombyte as rb
 
 my_list = [
-        "Open Chrome",
-        "Open text editor",
-        "Open Mozila firefox",
-        "Evaluate string",
-        "Search Online",
-        "search file online",
-        "Search File",
-        "Play music",
-        "Play a Song",
-        "Play songs",
-        "youtube",
-        "youtube music",
-        "open youtube",
-        "Play youtube",
-        "Play songs youtube",
-        "play song youtube",
-        "open youtube and play songs",
-        "open youtube and play a song",
-        "open youtube and play music"
         ]
 query_list = list(my_list)
 

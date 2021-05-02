@@ -32,7 +32,7 @@ def deletefile():
     if os.path.exists(str(query)):
         os.remove(str(query))
         speak ("file deleted successfully")
-        query = query().lower()
+        query = query.lower()
     else: 
         speak("file doesnt exist")
 

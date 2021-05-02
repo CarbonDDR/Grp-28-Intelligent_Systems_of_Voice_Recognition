@@ -41,6 +41,7 @@ def ask():
     try:
         print("Recognizing...")   
         query = r.recognize_google(audio, language ='en-in')
+        query=query.lower()
         print(f"User said: {query}\n")
   
     except Exception as e:
