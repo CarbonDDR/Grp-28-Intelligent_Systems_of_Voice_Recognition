@@ -38,10 +38,10 @@ my_list += list(dict1.keys())
 query_list = list(my_list)
 
 rm = True
-
-# if rm or not os.path.exists(rb.DATA_STORAGE_FILENAME):
-#     os.remove("F:\\temp\Grp-28-Intelligent_Systems_of_Voice_Recognition\Project\ISVR\data_storage.p")
-#     rb.save_data(query_list)
+#print(rb.recombyte_q.__docs__())
+if rm or not os.path.exists(rb.DATA_STORAGE_FILENAME):
+     #os.remove("F:\\temp\Grp-28-Intelligent_Systems_of_Voice_Recognition\Project\ISVR\data_storage.p")
+     rb.save_data(query_list)
 
 query_list, total_words, words_dict, tot_words_dict = rb.load_data()
 command = None
@@ -53,9 +53,11 @@ while True:
     if "stop" in command:
         break
     answer = rb.recombyte_q(command, query_list, words_dict, tot_words_dict)
-    answer[0][0]=answer[0][0].lower()
+
     print(answer)
     if answer != []:
+        answer[0][0] = answer[0][0].lower()
         va.speak(answer[0][0])
         if answer[0][0] in dict1:
             dict1[answer[0][0]](command)
+
