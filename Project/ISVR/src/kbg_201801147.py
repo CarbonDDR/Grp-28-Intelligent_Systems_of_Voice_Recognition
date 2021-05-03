@@ -103,6 +103,12 @@ hash_dict = {
     "gedit start": open_caller,
     "gedit": open_caller,
     "text editor start": open_caller,
-    "text editor open": open_caller
+    "text editor open": open_caller,
+    "merge pdf": open_merger,
+    "pdf merge": open_merger,
+    "merge pdfs": open_merger,
+    "pdfs merge": open_merger,
+    "combine pdf": open_merger,
+    "combine pdfs": open_merger
 }
 # open_merger("open")
