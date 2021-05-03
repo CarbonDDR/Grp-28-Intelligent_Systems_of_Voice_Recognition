@@ -284,7 +284,7 @@ def meaning_caller(input_string):
 hash_dict={
                 "open mozila":mozila_caller,"open firefox":mozila_caller,"open mozila firefox":mozila_caller,
                 "start mozila":mozila_caller,"start firefox":mozila_caller,"start mozila firefox":mozila_caller,
-                "tell time":tell_time_caller,"what is the time":tell_time_caller,
+                "tell time":tell_time_caller,"what time":tell_time_caller,
                 "who is":gk_caller,"what is":gk_caller,
                 "incremet brightness":brightness_caller,"add brightness":brightness_caller,
                 "increase brightness":brightness_caller,"up brightness":brightness_caller,
@@ -302,6 +302,6 @@ hash_dict={
                 "suggest top rated movie":movie_suggest_caller,
                 "corona stats":corona_caller,"covid-19 stats":corona_caller,"corona virus stats":corona_caller,
                 "corona cases' news":corona_caller,"number of cases of corona":corona_caller,
-                "tell me the meaning of":meaning_caller,"find the similar words of":meaning_caller,
-                "find the meaning of":meaning_caller,"meaning of":meaning_caller
+                "tell meaning":meaning_caller,"find similar words":meaning_caller,
+                "find meaning":meaning_caller,"meaning":meaning_caller
 }
