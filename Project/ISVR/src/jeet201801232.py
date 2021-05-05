@@ -118,6 +118,7 @@ def pasword():
         s.extend(s3)
         s.extend(s4)
         p=("".join(random.sample(s, plen)))
+        speak("here is yout password sir you can copy it to yout clipboard")
         print(p)
 
 
