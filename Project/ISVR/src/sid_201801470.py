@@ -122,6 +122,6 @@ hash_dict = {
 
 
 
-if __name__ == "__main__":
-    player_caller()
+# if __name__ == "__main__":
+#     player_caller()
 
