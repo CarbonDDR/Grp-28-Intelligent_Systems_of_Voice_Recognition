@@ -32,7 +32,11 @@ def folder_finder(speak):
       if file_name == "":
         continue
       else:
-        break
+        print("Do you want to speak again? Yes/No:")
+        if ask().lower() == "no":
+            break
+        else:
+            continue
     #file_name = ask()
     sysos = platform.system()
 
@@ -44,7 +48,7 @@ def folder_finder(speak):
         found_paths =  find_folder(file_name,"//")
         
     if len(found_paths) == 0:
-        speak("No such folder found")
+        print("No such folder found")
     elif len(found_paths) == 1:
         os.startfile(found_paths[0])
     else:
@@ -70,7 +74,7 @@ def Linux(file_name):
     paths.pop()
     
     if len(paths) == 0:
-        speak("No such file found")
+        print("No such file found")
     elif len(paths) == 1:
         subprocess.Popen(f"xdg-open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
@@ -94,7 +98,7 @@ def Windows(file_name):
         line = line[:-1]
     
     if len(paths) == 0:
-        speak("No such file found")
+        print("No such file found")
     elif len(paths) == 1:
         subprocess.Popen(paths[0], shell=True, stdout=subprocess.PIPE)
     else:
@@ -136,7 +140,11 @@ def file_finder(speak):
       if file_name == "":
         continue
       else:
-        break
+        print("Do you want to speak again? Yes/No:")
+        if ask().lower() == "no":
+            break
+        else:
+            continue
     
     print("please specify the extension")
     extension = None
@@ -145,7 +153,11 @@ def file_finder(speak):
       if extension == "":
         continue
       else:
-        break
+        print("Do you want to speak again? Yes/No:")
+        if ask().lower() == "no":
+            break
+        else:
+            continue
     file_name = file_name + "." + extension
     
     sysos = platform.system()
