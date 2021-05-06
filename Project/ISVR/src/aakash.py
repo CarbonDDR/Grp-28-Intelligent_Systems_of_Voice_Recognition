@@ -261,7 +261,7 @@ def ok():
         
         
         
-def unit_converter():
+def unit_converter(search):
     root = Tk()
     root.geometry("400x300")
     root.title("Unit Converter")
