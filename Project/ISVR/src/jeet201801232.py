@@ -185,7 +185,7 @@ def phone_caller(input_string):
 
     def ReadCSVFile():
         global header
-        with open('StudentData.csv') as csvfile:
+        with open('src\StudentData.csv') as csvfile:
             csv_reader = csv.reader(csvfile, delimiter=',')
             header = next(csv_reader)
             for row in csv_reader:
@@ -194,7 +194,7 @@ def phone_caller(input_string):
         print(phonelist)
 
     def WriteInCSVFile(phonelist):
-        with open('StudentData.csv', 'w', newline='') as csv_file:
+        with open('src\StudentData.csv', 'w', newline='') as csv_file:
             writeobj = csv.writer(csv_file, delimiter=',')
             writeobj.writerow(header)
             for row in phonelist:
