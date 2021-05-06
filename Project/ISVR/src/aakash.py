@@ -129,7 +129,7 @@ hash_dict = {
     "find folder" : folder_finder,
     "search folder" : folder_finder,
     "find file" : file_finder,
-    "search file" : file_finder
+    "search file" : file_finder,
     "open folder" : folder_finder,
     "open file" : file_finder
 }
