@@ -43,5 +43,6 @@ Siddharth Moradiya (201801470):
 2) Contributed in all the labs discussion, report making..
 
 Kishan Gadhiya(201801147):
-1) Open notepad in windows through the voice command
-2) Open Gedit in linux through the voice command
+1) Open notepad in windows through the voice command.
+2) Open Gedit in linux through the voice command.
+3) Open pages in mac through the voice command.
