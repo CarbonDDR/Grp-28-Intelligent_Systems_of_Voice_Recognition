@@ -29,7 +29,7 @@ def folder_finder(speak):
     file_name = None
     while True:
       file_name = ask()
-      if spoke == "":
+      if file_name == "":
         continue
       else:
         break
@@ -133,7 +133,7 @@ def file_finder(speak):
     file_name = None
     while True:
       file_name = ask()
-      if spoke == "":
+      if file_name == "":
         continue
       else:
         break
@@ -142,7 +142,7 @@ def file_finder(speak):
     extension = None
     while True:
       extension = ask()
-      if spoke == "":
+      if extension == "":
         continue
       else:
         break
