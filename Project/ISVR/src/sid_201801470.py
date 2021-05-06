@@ -31,7 +31,7 @@ def find_folder(name, path):
 
 #This function collects all the paths of the folder with  "perticular name"
 def folder_finder():
-    speak("please specify what do you want to watch : Movies Videos or Musics")
+    speak("please specify the folder name which contains Movies Videos or Musics")
     file_k = ask()
     file_names = [file_k.lower()]
     if(file_k[-1]!='s'): 
