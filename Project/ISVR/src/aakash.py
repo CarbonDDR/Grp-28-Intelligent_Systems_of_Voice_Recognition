@@ -11,7 +11,7 @@ Sources     : Python Documentation
 import os
 import platform
 import subprocess
-from src.va import ask, speak
+from va import ask, speak
 
 
 ## -----------------------Folder finder START------------------------------------------
@@ -43,7 +43,6 @@ def folder_finder(speak):
         for line in found_paths:
             print(str(j) + '.', line)
             j += 1
-        input("")
         speak("There are multiple folders with this name. Please specify the id of the path you want to open.")
         number = int(ask())
         os.startfile(found_paths[number - 1])
@@ -64,12 +63,12 @@ def Linux(file_name):
         subprocess.Popen(f"xdg-open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
-        for line in found_paths:
+        for line in paths:
             print(str(j) + '.', line)
             j += 1
         speak("There are multiple files with this name. Please specify the id of the path you want to open.")
         number = int(ask())
-        os.startfile(found_paths[number - 1])
+        os.startfile(paths[number - 1])
 
 def Windows(file_name):
     cmd = subprocess.Popen(f"where /r \ {file_name}", shell=True, stdout=subprocess.PIPE)
@@ -85,12 +84,12 @@ def Windows(file_name):
         subprocess.Popen(paths[0], shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
-        for line in found_paths:
+        for line in paths:
             print(str(j) + '.', line)
             j += 1
         speak("There are multiple files with this name. Please specify the id of the path you want to open.")
         number = int(ask())
-        os.startfile(found_paths[number - 1])
+        os.startfile(paths[number - 1])
 
 def Macos(file_name):
     cmd = subprocess.Popen(f"find / -name {file_name}", shell=True, stdout=subprocess.PIPE)
@@ -104,13 +103,12 @@ def Macos(file_name):
         subprocess.Popen(f"open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
-        for line in found_paths:
+        for line in paths:
             print(str(j) + '.', line)
             j += 1
         speak("There are multiple files with this name. Please specify the id of the path you want to open.")
         number = int(ask())
-        os.startfile(found_paths[number - 1])
-
+        os.startfile(paths[number - 1])
         
 def file_finder(speak):
     print("please specify the file name")
