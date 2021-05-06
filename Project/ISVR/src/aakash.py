@@ -11,7 +11,7 @@ Sources     : Python Documentation
 import os
 import platform
 import subprocess
-from va import ask, speak
+from src.va import ask, speak
 
 
 ## -----------------------Folder finder START------------------------------------------
@@ -35,8 +35,10 @@ def folder_finder(speak):
         found_paths = find_folder(file_name,"//")
     elif sysos == "Darwin":
         found_paths =  find_folder(file_name,"//")
-
-    if len(found_paths) == 1:
+        
+    if len(found_paths) == 0:
+        speak("No such folder found")
+    elif len(found_paths) == 1:
         os.startfile(found_paths[0])
     else:
         j = 1
@@ -59,7 +61,10 @@ def Linux(file_name):
     for line in ans.split('\n'):
         paths.append(line)
     paths.pop()
-    if len(paths) == 1:
+    
+    if len(paths) == 0:
+        speak("No such file found")
+    elif len(paths) == 1:
         subprocess.Popen(f"xdg-open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
@@ -80,7 +85,10 @@ def Windows(file_name):
     paths.pop()
     for line in paths:
         line = line[:-1]
-    if len(paths) == 1:
+    
+    if len(paths) == 0:
+        speak("No such file found")
+    elif len(paths) == 1:
         subprocess.Popen(paths[0], shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
@@ -99,7 +107,10 @@ def Macos(file_name):
     for line in ans.split('\r'):
         paths.append(line)
     paths.pop()
-    if len(paths) == 1:
+    
+    if len(paths) == 0:
+        speak("No such file found")
+    elif len(paths) == 1:
         subprocess.Popen(f"open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
