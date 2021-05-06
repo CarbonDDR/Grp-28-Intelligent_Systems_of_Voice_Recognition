@@ -25,7 +25,7 @@ def find_folder(name, path):
     return result
 
 def folder_finder(speak):
-    speak("please specify the folder name")
+    print("please specify the folder name")
     file_name = ask()
     sysos = platform.system()
 
@@ -113,7 +113,7 @@ def Macos(file_name):
 
         
 def file_finder(speak):
-    speak("please specify the file name")
+    print("please specify the file name")
     file_name = ask()
     sysos = platform.system()
     if sysos == "Windows":
