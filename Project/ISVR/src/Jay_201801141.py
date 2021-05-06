@@ -37,6 +37,7 @@ def mozila_caller(input_string):
 def tell_time():
     tim=datetime.datetime.now().strftime("%I:%M:%S")
     speak("Sir, The time is: ")
+    print(tim)
     speak(tim)
 
 def tell_time_caller(input_string):
@@ -79,7 +80,8 @@ def brightness(query):
             sbc.set_brightness(new_lev)
             
         elif "decrement" in query or "subtract" in query or "decrease" in query or "low" in query or "down" in query:
-            new_lev=max(lev-current_brightness,0)
+            print(lev)
+            new_lev=max(current_brightness-lev,0)
             sbc.set_brightness(new_lev)
         else:
             if new_lev>100:
