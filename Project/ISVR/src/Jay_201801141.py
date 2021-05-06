@@ -112,7 +112,11 @@ def google_map_caller(input_string):
 def weather(query):
     key = "772992eec7a54fc87f19fcf6fc03d643"
     weather_url="http://api.openweathermap.org/data/2.5/weather?"
-    ind=query.split().index("in")
+    if "in" in query:
+        ind=query.split().index("in")
+    else:
+        ind=query.split().index("of")
+    print(ind)
     location=query.split()[ind+1:]
     location="".join(location)
     url=weather_url+"appid="+key+"&q="+location
@@ -148,7 +152,7 @@ def news():
         speak(str(new["title"]))
         print(str(new["description"]),"\n")
         speak(str(new["description"]))
-        if k==6:
+        if k>=3:
             break
     response = requests.get(url)
 
@@ -240,7 +244,7 @@ def movie_suggest():
         if k==10:
             break
 
-def movie_suggest_caller():
+def movie_suggest_caller(input_string):
     movie_suggest()
 
 #* Tell the similar words for given word
@@ -292,8 +296,9 @@ hash_dict={
                 "decrement brightness":brightness_caller,"subtract brightness":brightness_caller,
                 "decrease brightness":brightness_caller,"low brightness":brightness_caller,
                 "down brightness":brightness_caller,"set brightness":brightness_caller,
+                "where":google_map_caller,"show in map":google_map_caller,
                 "weather":weather_caller,
-                "news":news_caller,
+                "news":news_caller,"tell news":news_caller,
                 "suggest book":book_suggest_caller,"suggest books":book_suggest_caller,
                 "suggest top read books":book_suggest_caller,"Most read books":book_suggest_caller,
                 "suggest top read book":book_suggest_caller,
@@ -301,7 +306,7 @@ hash_dict={
                 "suggest top rated movies":movie_suggest_caller,"Most imdb star movies":movie_suggest_caller,
                 "suggest top rated movie":movie_suggest_caller,
                 "corona stats":corona_caller,"covid-19 stats":corona_caller,"corona virus stats":corona_caller,
-                "corona cases' news":corona_caller,"number of cases of corona":corona_caller,
+                "corona cases' news":corona_caller,"number cases corona":corona_caller,
                 "tell meaning":meaning_caller,"find similar words":meaning_caller,
                 "find meaning":meaning_caller,"meaning":meaning_caller
 }
