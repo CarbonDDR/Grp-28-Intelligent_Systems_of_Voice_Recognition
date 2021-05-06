@@ -9,6 +9,7 @@ from src.va import speak,ask
 import requests
 from tkinter import *
 import csv
+import cv2
 from tkinter import messagebox
 from tkinter import *
 import tkinter as tk
@@ -501,6 +502,9 @@ def picture_taker_caller(input_string):
 
     cv2.destroyAllWindows()
 
+def gmail_caller(input_string):
+    speak("Opening Gmail")
+    webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
 
 hash_dict={
                 "show download":show_downloads_caller,"print download": show_downloads_caller,
@@ -528,7 +532,8 @@ hash_dict={
                  "open currency converter":currency_converter_caller,"display currency converter":currency_converter_caller,
                  "show currency converter":currency_converter_caller,"open alarm":alarm_caller,"start alarm":alarm_caller,
                  "take photo":picture_taker_caller,"capture photo":picture_taker_caller,"capture image":picture_taker_caller,
-                 "take picture":picture_taker_caller,"capture picture":picture_taker_caller,"take image":picture_taker_caller
+                 "take picture":picture_taker_caller,"capture picture":picture_taker_caller,"take image":picture_taker_caller,
+                 "open gmail":gmail_caller,"start gmail":gmail_caller
 
                
 }
