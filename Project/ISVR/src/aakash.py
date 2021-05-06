@@ -26,7 +26,14 @@ def find_folder(name, path):
 
 def folder_finder(speak):
     print("please specify the folder name")
-    file_name = ask()
+    file_name = None
+    while True:
+      file_name = ask()
+      if spoke == "":
+        continue
+      else:
+        break
+    #file_name = ask()
     sysos = platform.system()
 
     if sysos == "Windows":
@@ -35,16 +42,17 @@ def folder_finder(speak):
         found_paths = find_folder(file_name,"//")
     elif sysos == "Darwin":
         found_paths =  find_folder(file_name,"//")
-
-    if len(found_paths) == 1:
+        
+    if len(found_paths) == 0:
+        speak("No such folder found")
+    elif len(found_paths) == 1:
         os.startfile(found_paths[0])
     else:
         j = 1
         for line in found_paths:
             print(str(j) + '.', line)
             j += 1
-        input("")
-        speak("There are multiple folders with this name. Please specify the id of the path you want to open.")
+        print("There are multiple folders with this name. Please specify the id of the path you want to open.")
         number = int(ask())
         os.startfile(found_paths[number - 1])
 ## -----------------------Folder finder END------------------------------------------
@@ -60,16 +68,19 @@ def Linux(file_name):
     for line in ans.split('\n'):
         paths.append(line)
     paths.pop()
-    if len(paths) == 1:
+    
+    if len(paths) == 0:
+        speak("No such file found")
+    elif len(paths) == 1:
         subprocess.Popen(f"xdg-open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
-        for line in found_paths:
+        for line in paths:
             print(str(j) + '.', line)
             j += 1
-        speak("There are multiple files with this name. Please specify the id of the path you want to open.")
+        print("There are multiple files with this name. Please specify the id of the path you want to open.")
         number = int(ask())
-        os.startfile(found_paths[number - 1])
+        os.startfile(paths[number - 1])
 
 def Windows(file_name):
     cmd = subprocess.Popen(f"where /r \ {file_name}", shell=True, stdout=subprocess.PIPE)
@@ -81,16 +92,19 @@ def Windows(file_name):
     paths.pop()
     for line in paths:
         line = line[:-1]
-    if len(paths) == 1:
+    
+    if len(paths) == 0:
+        speak("No such file found")
+    elif len(paths) == 1:
         subprocess.Popen(paths[0], shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
-        for line in found_paths:
+        for line in paths:
             print(str(j) + '.', line)
             j += 1
-        speak("There are multiple files with this name. Please specify the id of the path you want to open.")
+        print("There are multiple files with this name. Please specify the id of the path you want to open.")
         number = int(ask())
-        os.startfile(found_paths[number - 1])
+        os.startfile(paths[number - 1])
 
 def Macos(file_name):
     cmd = subprocess.Popen(f"find / -name {file_name}", shell=True, stdout=subprocess.PIPE)
@@ -100,21 +114,40 @@ def Macos(file_name):
     for line in ans.split('\r'):
         paths.append(line)
     paths.pop()
-    if len(paths) == 1:
+    
+    if len(paths) == 0:
+        print("No such file found")
+    elif len(paths) == 1:
         subprocess.Popen(f"open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
         j = 1
-        for line in found_paths:
+        for line in paths:
             print(str(j) + '.', line)
             j += 1
-        speak("There are multiple files with this name. Please specify the id of the path you want to open.")
+        print("There are multiple files with this name. Please specify the id of the path you want to open.")
         number = int(ask())
-        os.startfile(found_paths[number - 1])
-
+        os.startfile(paths[number - 1])
         
 def file_finder(speak):
-    print("please specify the file name")
-    file_name = ask()
+    print("please specify the file name without extension")
+    file_name = None
+    while True:
+      file_name = ask()
+      if spoke == "":
+        continue
+      else:
+        break
+    
+    print("please specify the extension")
+    extension = None
+    while True:
+      extension = ask()
+      if spoke == "":
+        continue
+      else:
+        break
+    file_name = file_name + "." + extension
+    
     sysos = platform.system()
     if sysos == "Windows":
         Windows(file_name)
@@ -122,7 +155,7 @@ def file_finder(speak):
         Linux(file_name)
     elif sysos == "Darwin":
         Macos(file_name)
-    
+
 ## -----------------------File finder END------------------------------------------
 
 hash_dict = {
