@@ -230,9 +230,8 @@ OPTIONS = ["select units",
             "cu. cm",
             "Litre",
             "ml",
-            "gallon"]
-    
-    
+            "gallon"]   
+
 def ok():
     inp = float(inputentry.get())
     inp_unit = inputopt.get()
@@ -257,9 +256,7 @@ def ok():
 
     else: # Display error if units are of different types
         outputentry.delete(0, END)
-        outputentry.insert(0, "ERROR")
-        
-        
+        outputentry.insert(0, "ERROR")     
         
 def unit_converter(search):
     root = Tk()
@@ -267,6 +264,7 @@ def unit_converter(search):
     root.title("Unit Converter")
     root['bg'] = 'black'
     
+    global inputopt, outputopt, inputentry, outputentry
     inputopt = StringVar()
     inputopt.set(OPTIONS[0])
 
