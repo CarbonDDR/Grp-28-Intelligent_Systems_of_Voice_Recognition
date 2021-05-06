@@ -111,16 +111,10 @@ def Macos(file_name):
         number = int(ask())
         os.startfile(found_paths[number - 1])
 
-# Extension must be spelled with the file name
-# Find a word with having '.' as a character.
-def process_for_file(string):
-    parts = string.split(" ")
-    for word in parts:
-        if word.find(".") != -1:
-            return word
-
+        
 def file_finder(speak):
-    file_name = process_for_file(speak)
+    speak("please specify the file name")
+    file_name = ask()
     sysos = platform.system()
     if sysos == "Windows":
         Windows(file_name)
@@ -128,7 +122,7 @@ def file_finder(speak):
         Linux(file_name)
     elif sysos == "Darwin":
         Macos(file_name)
-        
+    
 ## -----------------------File finder END------------------------------------------
 
 hash_dict = {
@@ -136,4 +130,6 @@ hash_dict = {
     "search folder" : folder_finder,
     "find file" : file_finder,
     "search file" : file_finder
+    "open folder" : folder_finder,
+    "open file" : file_finder
 }
