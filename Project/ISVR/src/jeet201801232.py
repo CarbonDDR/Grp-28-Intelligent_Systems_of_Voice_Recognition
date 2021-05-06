@@ -470,6 +470,37 @@ def alarm_caller(input_string):
 
     top.mainloop()
 
+def picture_taker_caller(input_string):
+    speak("preparing to take image press space to save and escape to quit")
+    cam = cv2.VideoCapture(0)
+
+    cv2.namedWindow("test")
+
+    img_counter = 0
+
+    while True:
+        ret, frame = cam.read()
+        if not ret:
+            print("failed to grab frame")
+            break
+        cv2.imshow("test", frame)
+
+        k = cv2.waitKey(1)
+        if k % 256 == 27:
+            # ESC pressed
+            print("Escape hit, closing...")
+            break
+        elif k % 256 == 32:
+            # SPACE pressed
+            img_name = "picture{}.png".format(img_counter)
+            cv2.imwrite(img_name, frame)
+            print("{} written!".format(img_name))
+            img_counter += 1
+
+    cam.release()
+
+    cv2.destroyAllWindows()
+
 
 hash_dict={
                 "show download":show_downloads_caller,"print download": show_downloads_caller,
@@ -495,7 +526,9 @@ hash_dict={
                 "list top processes":top_process_caller,"show top processes":top_process_caller,
                  "print top processes":top_process_caller,"display top processes":top_process_caller,
                  "open currency converter":currency_converter_caller,"display currency converter":currency_converter_caller,
-                 "show currency converter":currency_converter_caller,"open alarm":alarm_caller,"start alarm":alarm_caller
+                 "show currency converter":currency_converter_caller,"open alarm":alarm_caller,"start alarm":alarm_caller,
+                 "take photo":picture_taker_caller,"capture photo":picture_taker_caller,"capture image":picture_taker_caller,
+                 "take picture":picture_taker_caller,"capture picture":picture_taker_caller,"take image":picture_taker_caller
 
                
 }
