@@ -36,7 +36,8 @@ Parthav Kansagra(201801145):
 1)Open webex meeting through the voice Command 
 
 Manali Reddy(201801118):
-1) Creation and deletion of files in different format (.txt, .pdf, etc.) specified by the user
+1) Creation and deletion of files in different format (.txt, .ppt, .cpp etc.) specified by the user
+2) Documentation and Presentation
 
 Siddharth Moradiya (201801470):
 1) Added a functionality to play any music or video from a given folder path in offline mode. First the user provides the folder path and then the system shows the list of files which is available on that folder. after the user says file number and the system will play that particular music/video for the user.
