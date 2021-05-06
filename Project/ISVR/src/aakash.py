@@ -4,6 +4,7 @@ College ID  : 201801459
 About       : Added file and folder finder, which searches for a given file(or folder) among all the files or 
               folders on the pc. In case there are multiple files or folders with
               the same name, then it will print all the paths of found files or folders.
+Update      : If there are multiple files with the same name, then you can specify the file you want to open.
 Sources     : Python Documentation
 """
 
@@ -38,9 +39,14 @@ def folder_finder(speak):
     if len(found_paths) == 1:
         os.startfile(found_paths[0])
     else:
+        j = 1
         for line in found_paths:
-            print(line)
+            print(str(j) + '.', line)
+            j += 1
         input("")
+        speak("There are multiple folders with this name. Please specify the id of the path you want to open.")
+        number = int(ask())
+        os.startfile(found_paths[number - 1])
 ## -----------------------Folder finder END------------------------------------------
 
 
@@ -57,9 +63,13 @@ def Linux(file_name):
     if len(paths) == 1:
         subprocess.Popen(f"xdg-open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
-        for line in paths:
-            print(line)
-        input("")
+        j = 1
+        for line in found_paths:
+            print(str(j) + '.', line)
+            j += 1
+        speak("There are multiple files with this name. Please specify the id of the path you want to open.")
+        number = int(ask())
+        os.startfile(found_paths[number - 1])
 
 def Windows(file_name):
     cmd = subprocess.Popen(f"where /r \ {file_name}", shell=True, stdout=subprocess.PIPE)
@@ -74,9 +84,13 @@ def Windows(file_name):
     if len(paths) == 1:
         subprocess.Popen(paths[0], shell=True, stdout=subprocess.PIPE)
     else:
-        for line in paths:
-            print(line)
-        input("")
+        j = 1
+        for line in found_paths:
+            print(str(j) + '.', line)
+            j += 1
+        speak("There are multiple files with this name. Please specify the id of the path you want to open.")
+        number = int(ask())
+        os.startfile(found_paths[number - 1])
 
 def Macos(file_name):
     cmd = subprocess.Popen(f"find / -name {file_name}", shell=True, stdout=subprocess.PIPE)
@@ -89,20 +103,18 @@ def Macos(file_name):
     if len(paths) == 1:
         subprocess.Popen(f"open {paths[0]}", shell=True, stdout=subprocess.PIPE)
     else:
-        for line in paths:
-            print(line)
-        input("")
+        j = 1
+        for line in found_paths:
+            print(str(j) + '.', line)
+            j += 1
+        speak("There are multiple files with this name. Please specify the id of the path you want to open.")
+        number = int(ask())
+        os.startfile(found_paths[number - 1])
 
-# Extension must be spelled with the file name
-# Find a word with having '.' as a character.
-def process_for_file(string):
-    parts = string.split(" ")
-    for word in parts:
-        if word.find(".") != -1:
-            return word
-
+        
 def file_finder(speak):
-    file_name = process_for_file(speak)
+    speak("please specify the file name")
+    file_name = ask()
     sysos = platform.system()
     if sysos == "Windows":
         Windows(file_name)
@@ -110,12 +122,14 @@ def file_finder(speak):
         Linux(file_name)
     elif sysos == "Darwin":
         Macos(file_name)
-        
+    
 ## -----------------------File finder END------------------------------------------
 
 hash_dict = {
     "find folder" : folder_finder,
     "search folder" : folder_finder,
     "find file" : file_finder,
-    "search file" : file_finder
+    "search file" : file_finder,
+    "open folder" : folder_finder,
+    "open file" : file_finder
 }
