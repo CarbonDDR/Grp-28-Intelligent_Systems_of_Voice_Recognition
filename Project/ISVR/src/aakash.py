@@ -124,7 +124,7 @@ def Windows(file_name):
             "There are multiple files with this name. Please specify the id of the path you want to open."
         )
         number = int(ask())
-        os.startfile(paths[number - 1])
+        os.startfile(paths[number - 1].replace("\r", ""))
 
 
 def Macos(file_name):
