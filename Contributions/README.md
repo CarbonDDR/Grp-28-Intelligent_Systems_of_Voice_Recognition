@@ -22,7 +22,12 @@ Jeet Umat(201801232):added given functionality
 4)give information about total cores of cpu,usage of cores(in percentage),maximum and minimum frequency of cpu
 5)give information about partition of disk 
 6)give the information about total memory data of a computer
-7)give our current location in google map
+7)take picture(it will access webcam and take our picture)
+8)currency converter
+9)alarm 
+10)Phone management system(we can add ,delete and update a contact)
+11)list top processes according to their memory usage
+12)If we speak anything it will save in a text file 
 
 Divyansh Khatri(201801012): Added Given Functionality
 1) Added Functions to Open or start Google Chrome on all three platforms
