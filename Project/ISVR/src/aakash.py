@@ -105,7 +105,7 @@ def Windows(file_name):
     subprocess_return = cmd.communicate()
     ans = subprocess_return[0].decode("utf-8")
     paths = []
-    for line in ans.split("\r\n"):
+    for line in ans.split("\n"):
         paths.append(line)
     paths.pop()
     for line in paths:
