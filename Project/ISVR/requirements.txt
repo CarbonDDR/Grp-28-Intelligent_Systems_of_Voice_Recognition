@@ -7,9 +7,8 @@ tqdm>=4.59.0
 wolframalpha>=5.0.0
 screen-brightness-control>=0.8.5
 psutil>=5.8.0
-requests
-beautifulsoup4
-wikipedia
-PyQt5
-opencv-python
-PyPDF2==1.26.0
+beautifulsoup4>=4.9.3
+PyQt5>=5.15.4
+wikipedia>=1.4.0
+opencv-python>=4.5.1.48
+PyPDF2>=1.26.0
