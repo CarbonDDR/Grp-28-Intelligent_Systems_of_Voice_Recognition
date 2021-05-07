@@ -60,9 +60,9 @@ while True:
     if "search" in command and "online" in command:
         webbrowser.open("https://www.google.com/search?q=" + command.split("online")[1])
         continue
-    if "stop" in command or "shut down" in command or "shutdown" in command:
+    if ("stop" in command and "stopwatch" not in command) or "shut down" in command or "shutdown" in command:
         break
-    answer = rb.recombyte_q(command, query_list, words_dict, tot_words_dict)
+    answer = rb.recombyte_q(command, query_list, words_dict, tot_words_dict, t4=0.9)
 
     # print(answer)
     if answer != []:

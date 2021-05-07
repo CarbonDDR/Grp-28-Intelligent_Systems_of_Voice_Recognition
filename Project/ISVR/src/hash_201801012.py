@@ -41,7 +41,7 @@ def chrome_caller(input_string):
 def main_date():
 
     now = datetime.datetime.now()
-    speak("Sir, the Current Date is : " + now.strftime("%d-%m-%Y") + "\n")
+    speak("Sir, the Current Date is : " + now.strftime("%m-%d-%Y") + "\n")
     print("Sir, the Current Date is : ")
     print(now.strftime("%d-%m-%Y") + "\n")
     print("")
@@ -55,7 +55,7 @@ def search_wiki():
     speak("What do you want to search on wikipedia ?")
     sinwiki = ask()
     sinwiki = sinwiki.replace("wikipedia", "")
-    results = wikipedia.summary(sinwiki, sentences=3)
+    results = wikipedia.summary(sinwiki, sentences=2)
     print(results)
     speak("According to Wikipedia,")
     speak(results)

@@ -14,7 +14,7 @@ import datetime
 import speech_recognition as sr
 
 
-engine = pyttsx3.init("sapi5")
+engine = pyttsx3.init()
 voices = engine.getProperty("voices")
 
 try:

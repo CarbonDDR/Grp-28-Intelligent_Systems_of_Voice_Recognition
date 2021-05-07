@@ -112,7 +112,7 @@ def brightness_caller(input_string):
 def google_map(query):
     ind = query.split().index("is")
     location = query.split()[ind + 1 :]
-    url = "https://www.google.com/maps/place/" + "".join(location)
+    url = "https://www.google.com/maps/place/" + " ".join(location)
     speak("This is where" + str(location) + "is.")
     webbrowser.open_new_tab(url)
 
@@ -142,9 +142,9 @@ def weather(query):
         desc = js["weather"][0]["description"]
         response = (
             "The temperature in Calcius is "
-            + str(tem)
+            + str(round(tem, 2))
             + " The humidity is "
-            + str(humidity)
+            + str(round(humidity, 2))
             + " and the weather description is "
             + str(desc)
         )
