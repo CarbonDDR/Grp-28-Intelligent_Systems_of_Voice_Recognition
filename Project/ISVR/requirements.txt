@@ -18,4 +18,3 @@ opencv-python>=4.5.1.48
 PyQt5>=5.15.2
 pyenchant>=3.2.0
 pyjokes>=0.6.0
-
