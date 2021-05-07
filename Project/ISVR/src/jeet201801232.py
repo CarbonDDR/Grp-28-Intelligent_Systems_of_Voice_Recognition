@@ -5,7 +5,7 @@ import random
 import string
 from sys import platform
 import psutil as p
-from src.va import speak,ask
+from src.va import speak, ask
 import requests
 from tkinter import *
 import csv
@@ -15,34 +15,39 @@ from tkinter import *
 import tkinter as tk
 from tkinter import ttk
 
+
 def downloads_path():
-    if os.name == 'nt':
+    if os.name == "nt":
         import winreg
-        sub_key = r'SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders'
-        downloads_guid = '{374DE290-123F-4565-9164-39C4925E467B}'
+
+        sub_key = r"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+        downloads_guid = "{374DE290-123F-4565-9164-39C4925E467B}"
         with winreg.OpenKey(winreg.HKEY_CURRENT_USER, sub_key) as key:
             location = winreg.QueryValueEx(key, downloads_guid)[0]
         return location
     else:
-        return os.path.join(os.path.expanduser('~'), 'downloads')
+        return os.path.join(os.path.expanduser("~"), "downloads")
+
 
 def show_downloads():
-    path_of_download=downloads_path()
-    total_list=os.listdir(path_of_download)
+    path_of_download = downloads_path()
+    total_list = os.listdir(path_of_download)
     print(total_list)
 
-def  show_downloads_caller(input_string):
+
+def show_downloads_caller(input_string):
     show_downloads()
 
 
 def size(byte):
-  #this the function to convert bytes into more suitable reading format.
+    # this the function to convert bytes into more suitable reading format.
 
-  #Suffixes for the size
-  for x in ["B","KB","MB","GB","TB"]:
-    if byte<1024:
-      return f"{byte:.2f}{x}"
-    byte=byte/1024
+    # Suffixes for the size
+    for x in ["B", "KB", "MB", "GB", "TB"]:
+        if byte < 1024:
+            return f"{byte:.2f}{x}"
+        byte = byte / 1024
+
 
 def disk():
     print("-" * 50, "Disk Information", "-" * 50)
@@ -59,46 +64,48 @@ def disk():
         print("  Free:       ", size(dsk.free))
         print("  Percentage: ", dsk.percent, "%\n")
 
-def disk_caller(input_string):
-     disk()
 
+def disk_caller(input_string):
+    disk()
 
 
 def memory():
-  print("-"*50, "Memory Information", "-"*50)
+    print("-" * 50, "Memory Information", "-" * 50)
 
-  #Getting the Memory/Ram Data.
-  mem = p.virtual_memory()
-  print("Total Memory:    ",size(mem.total))
-  print("Available Memory:", size(mem.available))
-  print("Used Memory:     ", size(mem.used))
-  print("Percentage:      ",mem.percent,"% \n")
+    # Getting the Memory/Ram Data.
+    mem = p.virtual_memory()
+    print("Total Memory:    ", size(mem.total))
+    print("Available Memory:", size(mem.available))
+    print("Used Memory:     ", size(mem.used))
+    print("Percentage:      ", mem.percent, "% \n")
 
-  #It is the Hard disk/ SSD space Which is used up as main memory when the main memory is not sufficient.
-  print("-"*48, "Swap Memory Information", "-"*47)
-  swmem = p.swap_memory()
-  print("Total Memory:    ", size(swmem.total))
-  print("Available Memory:", size(swmem.free))
-  print("Used Memory:     ", size(swmem.used))
-  print("Percentage:      ", swmem.percent, "%\n")
+    # It is the Hard disk/ SSD space Which is used up as main memory when the main memory is not sufficient.
+    print("-" * 48, "Swap Memory Information", "-" * 47)
+    swmem = p.swap_memory()
+    print("Total Memory:    ", size(swmem.total))
+    print("Available Memory:", size(swmem.free))
+    print("Used Memory:     ", size(swmem.used))
+    print("Percentage:      ", swmem.percent, "%\n")
+
 
 def memory_caller(input_string):
     memory()
 
+
 def cpu():
-  print("-"*50, "CPU Information", "-"*50)
+    print("-" * 50, "CPU Information", "-" * 50)
 
+    print("Logical/Total Core Count: ", p.cpu_count(logical=True))
+    print("Physical Core Count: ", p.cpu_count(logical=False))
+    fre = p.cpu_freq()
+    print("Maximum Frequency:", fre.max, "Mhz")
+    print("Minimum Frequency:", fre.min, "Mhz")
+    print("Current Frequency: ", fre.current, "Mhz")
 
-  print("Logical/Total Core Count: ", p.cpu_count(logical=True) )
-  print("Physical Core Count: ", p.cpu_count(logical=False))
-  fre=p.cpu_freq()
-  print("Maximum Frequency:" ,fre.max, "Mhz")
-  print("Minimum Frequency:", fre.min,"Mhz")
-  print("Current Frequency: ",fre.current ,"Mhz")
+    for x, percentage_usage in enumerate(p.cpu_percent(percpu=True)):
+        print("Core ", x, ":", percentage_usage, "%")
+    print("Total CPU Usage:", p.cpu_percent(), "%\n")
 
-  for x, percentage_usage in enumerate(p.cpu_percent(percpu=True)):
-      print("Core ",x, ":",percentage_usage,"%")
-  print("Total CPU Usage:", p.cpu_percent(),"%\n")
 
 def cpu_caller(input_string):
     cpu()
@@ -106,26 +113,25 @@ def cpu_caller(input_string):
 
 def pasword():
 
-        s1=string.ascii_lowercase
-        s2=string.ascii_uppercase
-        s3=string.digits
-        s4=string.punctuation
-        speak("please enter password length")
-        plen = int(input("Enter password length\n"))
+    s1 = string.ascii_lowercase
+    s2 = string.ascii_uppercase
+    s3 = string.digits
+    s4 = string.punctuation
+    speak("please enter password length")
+    plen = int(input("Enter password length\n"))
 
-        s=[]
-        s.extend(s1)
-        s.extend(s2)
-        s.extend(s3)
-        s.extend(s4)
-        p=("".join(random.sample(s, plen)))
-        speak("here is yout password sir you can copy it to yout clipboard")
-        print(p)
+    s = []
+    s.extend(s1)
+    s.extend(s2)
+    s.extend(s3)
+    s.extend(s4)
+    p = "".join(random.sample(s, plen))
+    speak("here is yout password sir you can copy it to yout clipboard")
+    print(p)
 
 
 def password_caller(input_string):
     pasword()
-
 
 
 def show_battery():
@@ -135,7 +141,10 @@ def show_battery():
     percent = battery.percent
     percentinletters = str(percent)
     speak(
-        "Sir, there is " + percentinletters + " percent remaining. Battery remaining is printed in the main screen.")
+        "Sir, there is "
+        + percentinletters
+        + " percent remaining. Battery remaining is printed in the main screen."
+    )
     print("There is " + percentinletters + " % remaining.")
     print("")
 
@@ -144,38 +153,38 @@ def battery_caller(input_string):
     show_battery()
 
 
-
-
-
-
 def notethat():
     speak("what should i remember sir")
     rememberMessage = ask()
     speak("you said me to remember" + rememberMessage)
-    remember = open('data.txt', 'w')
+    remember = open("data.txt", "w")
     remember.write(rememberMessage)
     remember.close()
+
 
 def note_caller(input_string):
     notethat()
 
+
 def top_process():
-        listOfProcObjects = []
-        # Iterate over the list
-        for proc in psutil.process_iter():
-            try:
-                # Fetch process details as dict
-                pinfo = proc.as_dict(attrs=['pid', 'name', 'username'])
-                pinfo['vms'] = proc.memory_info().vms / (1024 * 1024)
-                listOfProcObjects.append(pinfo);
-            except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
-                pass
+    listOfProcObjects = []
+    # Iterate over the list
+    for proc in psutil.process_iter():
+        try:
+            # Fetch process details as dict
+            pinfo = proc.as_dict(attrs=["pid", "name", "username"])
+            pinfo["vms"] = proc.memory_info().vms / (1024 * 1024)
+            listOfProcObjects.append(pinfo)
+        except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+            pass
 
+    listOfProcObjects = sorted(
+        listOfProcObjects, key=lambda procObj: procObj["vms"], reverse=True
+    )
+    print(listOfProcObjects)
+    for elem in listOfProcObjects[:10]:
+        print(elem)
 
-        listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
-        print(listOfProcObjects)
-        for elem in listOfProcObjects[:10]:
-            print(elem)
 
 def top_process_caller(input_string):
     top_process()
@@ -186,8 +195,8 @@ def phone_caller(input_string):
 
     def ReadCSVFile():
         global header
-        with open('src\StudentData.csv') as csvfile:
-            csv_reader = csv.reader(csvfile, delimiter=',')
+        with open("src\StudentData.csv") as csvfile:
+            csv_reader = csv.reader(csvfile, delimiter=",")
             header = next(csv_reader)
             for row in csv_reader:
                 phonelist.append(row)
@@ -195,8 +204,8 @@ def phone_caller(input_string):
         print(phonelist)
 
     def WriteInCSVFile(phonelist):
-        with open('src\StudentData.csv', 'w', newline='') as csv_file:
-            writeobj = csv.writer(csv_file, delimiter=',')
+        with open("src\StudentData.csv", "w", newline="") as csv_file:
+            writeobj = csv.writer(csv_file, delimiter=",")
             writeobj.writerow(header)
             for row in phonelist:
                 writeobj.writerow(row)
@@ -210,7 +219,7 @@ def phone_caller(input_string):
 
     def AddDetail():
         if E_name.get() != "" and E_last_name.get() != "" and E_contact.get() != "":
-            phonelist.append([E_name.get() + ' ' + E_last_name.get(), E_contact.get()])
+            phonelist.append([E_name.get() + " " + E_last_name.get(), E_contact.get()])
             print(phonelist)
             WriteInCSVFile(phonelist)
             set_select()
@@ -222,19 +231,28 @@ def phone_caller(input_string):
 
     def UpdateDetail():
         if E_name.get() and E_last_name.get() and E_contact.get():
-            phonelist[WhichSelected()] = [E_name.get() + ' ' + E_last_name.get(), E_contact.get()]
+            phonelist[WhichSelected()] = [
+                E_name.get() + " " + E_last_name.get(),
+                E_contact.get(),
+            ]
             WriteInCSVFile(phonelist)
             messagebox.showinfo("Confirmation", "Succesfully Update Contact")
             EntryReset()
             set_select()
 
-        elif not (E_name.get()) and not (E_last_name.get()) and not (E_contact.get()) and not (
-                len(select.curselection()) == 0):
+        elif (
+            not (E_name.get())
+            and not (E_last_name.get())
+            and not (E_contact.get())
+            and not (len(select.curselection()) == 0)
+        ):
             messagebox.showerror("Error", "Please fill the information")
 
         else:
             if len(select.curselection()) == 0:
-                messagebox.showerror("Error", "Please Select the Name and \n press Load button")
+                messagebox.showerror(
+                    "Error", "Please Select the Name and \n press Load button"
+                )
             else:
                 message1 = """To Load the all information of \n 
     						  selected row press Load button\n.
@@ -242,23 +260,25 @@ def phone_caller(input_string):
                 messagebox.showerror("Error", message1)
 
     def EntryReset():
-        E_name_var.set('')
-        E_last_name_var.set('')
-        E_contact_var.set('')
+        E_name_var.set("")
+        E_last_name_var.set("")
+        E_contact_var.set("")
 
     def DeleteEntry():
         if len(select.curselection()) != 0:
-            result = messagebox.askyesno('Confirmation', 'You Want to Delete Contact\n Which you selected')
+            result = messagebox.askyesno(
+                "Confirmation", "You Want to Delete Contact\n Which you selected"
+            )
             if result == True:
                 del phonelist[WhichSelected()]
                 WriteInCSVFile(phonelist)
                 set_select()
         else:
-            messagebox.showerror("Error", 'Please select the Contact')
+            messagebox.showerror("Error", "Please select the Contact")
 
     def LoadEntry():
         name, phone = phonelist[WhichSelected()]
-        print(name.split(' '))
+        print(name.split(" "))
         E_name_var.set(name.split()[0])
         E_last_name_var.set(name.split()[1])
         E_contact_var.set(phone)
@@ -301,13 +321,29 @@ def phone_caller(input_string):
     Frame2 = Frame(window)
     Frame2.grid(row=0, column=1, padx=15, pady=15, sticky=E)
     # <><><><><><><><><><><><><><<><<<><><<<><><><><><><><><><>
-    Add_button = Button(Frame2, text="Add Detail", width=15, bg="#6B69D6", fg="#FFFFFF", command=AddDetail)
+    Add_button = Button(
+        Frame2,
+        text="Add Detail",
+        width=15,
+        bg="#6B69D6",
+        fg="#FFFFFF",
+        command=AddDetail,
+    )
     Add_button.grid(row=0, column=0, padx=8, pady=8)
 
-    Update_button = Button(Frame2, text="Update Detail", width=15, bg="#6B69D6", fg="#FFFFFF", command=UpdateDetail)
+    Update_button = Button(
+        Frame2,
+        text="Update Detail",
+        width=15,
+        bg="#6B69D6",
+        fg="#FFFFFF",
+        command=UpdateDetail,
+    )
     Update_button.grid(row=1, column=0, padx=8, pady=8)
 
-    Reset_button = Button(Frame2, text="Reset", width=15, bg="#6B69D6", fg="#FFFFFF", command=EntryReset)
+    Reset_button = Button(
+        Frame2, text="Reset", width=15, bg="#6B69D6", fg="#FFFFFF", command=EntryReset
+    )
     Reset_button.grid(row=2, column=0, padx=8, pady=8)
     # ----------------------------------------------------------------------------
 
@@ -315,8 +351,17 @@ def phone_caller(input_string):
     DisplayFrame.grid(row=1, column=0, padx=15, pady=15)
 
     scroll = Scrollbar(DisplayFrame, orient=VERTICAL)
-    select = Listbox(DisplayFrame, yscrollcommand=scroll.set, font=("Arial Bold", 10), bg="#282923", fg="#E7C855",
-                     width=40, height=10, borderwidth=3, relief="groove")
+    select = Listbox(
+        DisplayFrame,
+        yscrollcommand=scroll.set,
+        font=("Arial Bold", 10),
+        bg="#282923",
+        fg="#E7C855",
+        width=40,
+        height=10,
+        borderwidth=3,
+        relief="groove",
+    )
     scroll.config(command=select.yview)
     select.grid(row=0, column=0, sticky=W)
     scroll.grid(row=0, column=1, sticky=N + S)
@@ -325,22 +370,37 @@ def phone_caller(input_string):
     ActionFrame = Frame(window)
     ActionFrame.grid(row=1, column=1, padx=15, pady=15, sticky=E)
 
-    Delete_button = Button(ActionFrame, text="Delete", width=15, bg="#D20000", fg="#FFFFFF", command=DeleteEntry)
+    Delete_button = Button(
+        ActionFrame,
+        text="Delete",
+        width=15,
+        bg="#D20000",
+        fg="#FFFFFF",
+        command=DeleteEntry,
+    )
     Delete_button.grid(row=0, column=0, padx=5, pady=5, sticky=S)
 
-    Loadbutton = Button(ActionFrame, text="Load", width=15, bg="#6B69D6", fg="#FFFFFF", command=LoadEntry)
+    Loadbutton = Button(
+        ActionFrame,
+        text="Load",
+        width=15,
+        bg="#6B69D6",
+        fg="#FFFFFF",
+        command=LoadEntry,
+    )
     Loadbutton.grid(row=1, column=0, padx=5, pady=5)
     ReadCSVFile()
     window.mainloop()
 
-class RealTimeCurrencyConverter():
+
+class RealTimeCurrencyConverter:
     def __init__(self, url):
         self.data = requests.get(url).json()
-        self.currencies = self.data['rates']
+        self.currencies = self.data["rates"]
 
     def convert(self, from_currency, to_currency, amount):
         initial_amount = amount
-        if from_currency != 'USD':
+        if from_currency != "USD":
             amount = amount / self.currencies[from_currency]
 
             # limiting the precision to 4 decimal places
@@ -349,32 +409,56 @@ class RealTimeCurrencyConverter():
 
 
 class App(tk.Tk):
-
     def __init__(self, converter):
         tk.Tk.__init__(self)
-        self.title = 'Currency Converter'
+        self.title = "Currency Converter"
         self.currency_converter = converter
 
         # self.configure(background = 'blue')
         self.geometry("500x200")
 
         # Label
-        self.intro_label = Label(self, text='Welcome to Real Time Currency Convertor', bg="yellow", fg='blue',
-                                 relief=tk.RAISED, borderwidth=3)
-        self.intro_label.config(font=('Courier', 15, 'bold'))
+        self.intro_label = Label(
+            self,
+            text="Welcome to Real Time Currency Convertor",
+            bg="yellow",
+            fg="blue",
+            relief=tk.RAISED,
+            borderwidth=3,
+        )
+        self.intro_label.config(font=("Courier", 15, "bold"))
 
-        self.date_label = Label(self, bg="lightblue",
-                                text=f"1 Indian Rupee equals = {self.currency_converter.convert('INR', 'USD', 1)} USD \n Date : {self.currency_converter.data['date']}",
-                                relief=tk.GROOVE, borderwidth=3)
+        self.date_label = Label(
+            self,
+            bg="lightblue",
+            text=f"1 Indian Rupee equals = {self.currency_converter.convert('INR', 'USD', 1)} USD \n Date : {self.currency_converter.data['date']}",
+            relief=tk.GROOVE,
+            borderwidth=3,
+        )
 
         self.intro_label.place(x=10, y=5)
         self.date_label.place(x=160, y=50)
 
         # Entry box
-        valid = (self.register(self.restrictNumberOnly), '%d', '%P')
-        self.amount_field = Entry(self, bd=3, relief=tk.RIDGE, justify=tk.CENTER, validate='key', validatecommand=valid)
-        self.converted_amount_field_label = Label(self, text='', fg='black', bg='white', relief=tk.RIDGE,
-                                                  justify=tk.CENTER, width=17, borderwidth=3)
+        valid = (self.register(self.restrictNumberOnly), "%d", "%P")
+        self.amount_field = Entry(
+            self,
+            bd=3,
+            relief=tk.RIDGE,
+            justify=tk.CENTER,
+            validate="key",
+            validatecommand=valid,
+        )
+        self.converted_amount_field_label = Label(
+            self,
+            text="",
+            fg="black",
+            bg="white",
+            relief=tk.RIDGE,
+            justify=tk.CENTER,
+            width=17,
+            borderwidth=3,
+        )
 
         # dropdown
         self.from_currency_variable = StringVar(self)
@@ -382,14 +466,30 @@ class App(tk.Tk):
         self.to_currency_variable = StringVar(self)
         self.to_currency_variable.set("USD")  # default value
 
-        font = ("Courier", 12, "bold",)
-        self.option_add('*TCombobox*Listbox.font', font)
-        self.from_currency_dropdown = ttk.Combobox(self, textvariable=self.from_currency_variable,
-                                                   values=list(self.currency_converter.currencies.keys()), font=font,
-                                                   state='readonly', width=12, justify=tk.CENTER)
-        self.to_currency_dropdown = ttk.Combobox(self, textvariable=self.to_currency_variable,
-                                                 values=list(self.currency_converter.currencies.keys()), font=font,
-                                                 state='readonly', width=12, justify=tk.CENTER)
+        font = (
+            "Courier",
+            12,
+            "bold",
+        )
+        self.option_add("*TCombobox*Listbox.font", font)
+        self.from_currency_dropdown = ttk.Combobox(
+            self,
+            textvariable=self.from_currency_variable,
+            values=list(self.currency_converter.currencies.keys()),
+            font=font,
+            state="readonly",
+            width=12,
+            justify=tk.CENTER,
+        )
+        self.to_currency_dropdown = ttk.Combobox(
+            self,
+            textvariable=self.to_currency_variable,
+            values=list(self.currency_converter.currencies.keys()),
+            font=font,
+            state="readonly",
+            width=12,
+            justify=tk.CENTER,
+        )
 
         # placing
         self.from_currency_dropdown.place(x=30, y=120)
@@ -399,8 +499,10 @@ class App(tk.Tk):
         self.converted_amount_field_label.place(x=346, y=150)
 
         # Convert button
-        self.convert_button = Button(self, text="Convert", bg="green", fg="black", command=self.perform)
-        self.convert_button.config(font=('Courier', 10, 'bold'))
+        self.convert_button = Button(
+            self, text="Convert", bg="green", fg="black", command=self.perform
+        )
+        self.convert_button.config(font=("Courier", 10, "bold"))
         self.convert_button.place(x=225, y=135)
 
     def perform(self):
@@ -416,32 +518,41 @@ class App(tk.Tk):
     def restrictNumberOnly(self, action, string):
         regex = re.compile(r"[0-9,]*?(\.)?[0-9,]*$")
         result = regex.match(string)
-        return (string == "" or (string.count('.') <= 1 and result is not None))
+        return string == "" or (string.count(".") <= 1 and result is not None)
 
 
 def currency_converter_caller(input_string):
-    url = 'https://api.exchangerate-api.com/v4/latest/USD'
+    url = "https://api.exchangerate-api.com/v4/latest/USD"
     converter = RealTimeCurrencyConverter(url)
     App(converter)
     mainloop()
+
 
 def alarm_caller(input_string):
     import tkinter
     import winsound
     import time
     import math
+
     def countdown(count):
         seconds = math.floor(count % 60)
         minutes = math.floor((count / 60) % 60)
         hours = math.floor((count / 3600))
-        label['text'] = "Hours: " + str(hours) + " Minutes:  " + str(minutes) + " Seconds: " + str(seconds)
+        label["text"] = (
+            "Hours: "
+            + str(hours)
+            + " Minutes:  "
+            + str(minutes)
+            + " Seconds: "
+            + str(seconds)
+        )
 
         if count >= 0:
             top.after(1000, countdown, count - 1)
         else:
             for x in range(10):
                 winsound.Beep(1000, 1000)
-            label['text'] = "Time is up!"
+            label["text"] = "Time is up!"
 
     def updateButton():
         hour, minute, sec = hoursE.get(), minuteE.get(), secondE.get()
@@ -470,6 +581,7 @@ def alarm_caller(input_string):
     button.grid(row=4, column=2)
 
     top.mainloop()
+
 
 def picture_taker_caller(input_string):
     speak("preparing to take image press space to save and escape to quit")
@@ -502,38 +614,77 @@ def picture_taker_caller(input_string):
 
     cv2.destroyAllWindows()
 
+
 def gmail_caller(input_string):
     speak("Opening Gmail")
     webbrowser.open("https://mail.google.com/mail/u/0/#inbox")
 
-hash_dict={
-                "show download":show_downloads_caller,"print download": show_downloads_caller,
-                "show downloads":show_downloads_caller,"print downloads":show_downloads_caller,
-                "display downloads":show_downloads_caller,"display download":show_downloads_caller,
-                "take note":note_caller,"note that":note_caller,"remember this":note_caller,
-                 "remaining battery":battery_caller,  "display  cpu":cpu_caller,"information cpu":cpu_caller,"show cpu":cpu_caller,
-                 "cpu usage":cpu_caller,"data  cpu":cpu_caller,"information cpu":cpu_caller,"display cpu":cpu_caller,
-                 "details cpu":cpu_caller,"statistics cpu":cpu_caller,
-                 "frequency  cpu":cpu_caller," cores cpu":cpu_caller,
-                 "display  drive": disk_caller, "information  drive": disk_caller, "show  drive": disk_caller,
-                "drive usage": disk_caller,  "data  drives": disk_caller,
-                "details  drive": disk_caller, "statistics  drive": disk_caller,
-                "display  disk": disk_caller, "information disk": disk_caller, 
-                "disk usage": disk_caller, "data  disk": disk_caller,
-                "details  disk": disk_caller, "statistics  disk": disk_caller, 
-               "display  memory": memory_caller, "information memory": memory_caller, "show  memory": memory_caller,
-              "memory usage": memory_caller,"data  memory": memory_caller,
-               "details  memory": memory_caller, "statistics  memory": memory_caller, "memory details": memory_caller,
-               "generate password":password_caller,"create password":password_caller,
-                "produce password":password_caller, "make password":password_caller,"form password":password_caller,
-                "phone":phone_caller,"contact":phone_caller,
-                "list top processes":top_process_caller,"show top processes":top_process_caller,
-                 "print top processes":top_process_caller,"display top processes":top_process_caller,
-                 "open currency converter":currency_converter_caller,"display currency converter":currency_converter_caller,
-                 "show currency converter":currency_converter_caller,"open alarm":alarm_caller,"start alarm":alarm_caller,
-                 "take photo":picture_taker_caller,"capture photo":picture_taker_caller,"capture image":picture_taker_caller,
-                 "take picture":picture_taker_caller,"capture picture":picture_taker_caller,"take image":picture_taker_caller,
-                 "open gmail":gmail_caller,"start gmail":gmail_caller
 
-               
+hash_dict = {
+    "show download": show_downloads_caller,
+    "print download": show_downloads_caller,
+    "show downloads": show_downloads_caller,
+    "print downloads": show_downloads_caller,
+    "display downloads": show_downloads_caller,
+    "display download": show_downloads_caller,
+    "take note": note_caller,
+    "note that": note_caller,
+    "remember this": note_caller,
+    "remaining battery": battery_caller,
+    "display  cpu": cpu_caller,
+    "information cpu": cpu_caller,
+    "show cpu": cpu_caller,
+    "cpu usage": cpu_caller,
+    "data  cpu": cpu_caller,
+    "information cpu": cpu_caller,
+    "display cpu": cpu_caller,
+    "details cpu": cpu_caller,
+    "statistics cpu": cpu_caller,
+    "frequency  cpu": cpu_caller,
+    " cores cpu": cpu_caller,
+    "display  drive": disk_caller,
+    "information  drive": disk_caller,
+    "show  drive": disk_caller,
+    "drive usage": disk_caller,
+    "data  drives": disk_caller,
+    "details  drive": disk_caller,
+    "statistics  drive": disk_caller,
+    "display  disk": disk_caller,
+    "information disk": disk_caller,
+    "disk usage": disk_caller,
+    "data  disk": disk_caller,
+    "details  disk": disk_caller,
+    "statistics  disk": disk_caller,
+    "display  memory": memory_caller,
+    "information memory": memory_caller,
+    "show  memory": memory_caller,
+    "memory usage": memory_caller,
+    "data  memory": memory_caller,
+    "details  memory": memory_caller,
+    "statistics  memory": memory_caller,
+    "memory details": memory_caller,
+    "generate password": password_caller,
+    "create password": password_caller,
+    "produce password": password_caller,
+    "make password": password_caller,
+    "form password": password_caller,
+    "phone": phone_caller,
+    "contact": phone_caller,
+    "list top processes": top_process_caller,
+    "show top processes": top_process_caller,
+    "print top processes": top_process_caller,
+    "display top processes": top_process_caller,
+    "open currency converter": currency_converter_caller,
+    "display currency converter": currency_converter_caller,
+    "show currency converter": currency_converter_caller,
+    "open alarm": alarm_caller,
+    "start alarm": alarm_caller,
+    "take photo": picture_taker_caller,
+    "capture photo": picture_taker_caller,
+    "capture image": picture_taker_caller,
+    "take picture": picture_taker_caller,
+    "capture picture": picture_taker_caller,
+    "take image": picture_taker_caller,
+    "open gmail": gmail_caller,
+    "start gmail": gmail_caller,
 }

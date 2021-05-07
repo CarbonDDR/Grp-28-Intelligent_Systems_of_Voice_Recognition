@@ -8,7 +8,6 @@ Sources     :
 """
 
 
-
 import os
 import sys
 import math
@@ -247,13 +246,13 @@ def recombyte_q(
     final_answer = []
     for ans in answer:
         score = evaluate2(ans.lower(), sentence.lower()) / len(ans)
-        #print(ans, sentence, score, sep="|")
+        # print(ans, sentence, score, sep="|")
 
         if score > t4:
             final_answer.append([ans, score])
 
     final_answer = sorted(final_answer, key=lambda x: x[1], reverse=True)
-    #print("Here", final_answer)
+    # print("Here", final_answer)
     return final_answer
 
 

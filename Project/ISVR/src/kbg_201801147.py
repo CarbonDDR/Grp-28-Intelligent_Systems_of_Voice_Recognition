@@ -12,13 +12,15 @@ def merger_call():
     list1 = []
 
     def open_file(files):
-        filepath = askopenfilename(filetypes=[("PDF Files", "*.pdf"), ("All Files", "*.*")])
+        filepath = askopenfilename(
+            filetypes=[("PDF Files", "*.pdf"), ("All Files", "*.*")]
+        )
         if not (filepath and Path(filepath).exists()):
             return
         files.append(filepath)
         # list out all filenames
-        lbl_items["text"] = '\n'.join(str(f) for f in files)
-        if len(files) >= 2 and btn_merge['state'] == "disabled":
+        lbl_items["text"] = "\n".join(str(f) for f in files)
+        if len(files) >= 2 and btn_merge["state"] == "disabled":
             btn_merge["state"] = "normal"
 
     def merge_pdfs(files):
@@ -58,7 +60,9 @@ def merger_call():
     ent_output_name = tk.Entry(master=fr_bg2, width=7)
     ent_output_name.grid(row=1, column=0, sticky="ew")
 
-    btn_merge = tk.Button(fr_bg2, text="Merge PDF", state="disabled", command=lambda: merge_pdfs(list1))
+    btn_merge = tk.Button(
+        fr_bg2, text="Merge PDF", state="disabled", command=lambda: merge_pdfs(list1)
+    )
     btn_merge.grid(row=2, column=0, sticky="ew", padx=5, pady=5)
     fr_bg2.pack()
 
@@ -76,12 +80,12 @@ def open_merger(line):
 def openTextEditor():
     pt = platform.system()
     pt = pt.lower()
-    if pt == 'win32' or pt == 'windows':
-        os.system('notepad')
-    elif pt == 'linux' or pt == 'linux2':
-        os.system('gedit')
-    elif pt == 'darwin':
-        os.system('open /Applications/Pages.app')
+    if pt == "win32" or pt == "windows":
+        os.system("notepad")
+    elif pt == "linux" or pt == "linux2":
+        os.system("gedit")
+    elif pt == "darwin":
+        os.system("open /Applications/Pages.app")
 
 
 def open_caller(line):
@@ -109,6 +113,6 @@ hash_dict = {
     "merge pdfs": open_merger,
     "pdfs merge": open_merger,
     "combine pdf": open_merger,
-    "combine pdfs": open_merger
+    "combine pdfs": open_merger,
 }
 # open_merger("open")

@@ -3,43 +3,44 @@ from src.va import ask, speak
 
 
 def identify_extension(query):
-  if query == 'text':
-    return ".txt"
-  if query == 'document':
-    return ".doc"
-  if query == 'python':
-    return '.py'
-  if query == 'javascript':
-    return '.js'
-  if query == 'ppt':
-    return '.pptx'
-  if query =='c plus plus':
-    return '.cpp'
-  if query == 'none':
-    return ''
-  else:
-    return ("." + query)
+    if query == "text":
+        return ".txt"
+    if query == "document":
+        return ".doc"
+    if query == "python":
+        return ".py"
+    if query == "javascript":
+        return ".js"
+    if query == "ppt":
+        return ".pptx"
+    if query == "c plus plus":
+        return ".cpp"
+    if query == "none":
+        return ""
+    else:
+        return "." + query
 
 
-#delete file function
+# delete file function
 def deletefile():
     speak("please tell me file name to delete")
     query = ask().lower()
     speak("please tell the file extension")
     ext = ask().lower()
     ext = identify_extension(ext)
-    query = query+ext
+    query = query + ext
     if os.path.exists(str(query)):
         os.remove(str(query))
-        speak ("file deleted successfully")
+        speak("file deleted successfully")
         query = query.lower()
-    else: 
+    else:
         speak("file doesnt exist")
 
 
 def delete_caller(query):
     deletefile()
-    
+
+
 hash_dict = {
     "delete file": delete_caller,
     "remove file": delete_caller,
@@ -66,19 +67,16 @@ hash_dict = {
     "delete html": delete_caller,
     "remove html": delete_caller,
     "delete pdf": delete_caller,
-    "remove pdf": delete_caller
-    }
+    "remove pdf": delete_caller,
+}
 
-#main function
+# main function
 if __name__ == "__main__":
-  
-  while True:
-    query = ask().lower()
-    
-    if str(query) in query:
-      #calling create file function
-            speak('deleting file')
+
+    while True:
+        query = ask().lower()
+
+        if str(query) in query:
+            # calling create file function
+            speak("deleting file")
             deletefile()
-
-
-
