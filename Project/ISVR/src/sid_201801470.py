@@ -14,7 +14,7 @@ import pathlib
 import os
 import platform
 import subprocess
-from va import ask, speak
+from src.va import ask, speak
 
 
 ## -----------------------Folder finder FOR MOVIES FOLDER------------------------------------------
@@ -31,7 +31,7 @@ def find_folder(name, path):
 
 #This function collects all the paths of the folder with  "perticular name"
 def folder_finder():
-    speak("please specify what do you want to watch : Movies Videos or Musics")
+    speak("please specify the folder name which contains Movies Videos Photos or Musics")
     file_k = ask()
     file_names = [file_k.lower()]
     if(file_k[-1]!='s'): 
@@ -66,8 +66,7 @@ def folder_finder():
         for i in range(0,len(found_paths)):
             print(i+11,' : ',found_paths[i])
         print('***************************')
-        speak('Please provide the Number of the file')
-        
+                
         ff = found_paths[int(ask())-11]
         print("\033[1m", '\nPlease provide the Number of the file :',"\033[0m")
     return ff
@@ -98,17 +97,21 @@ def player():
         stemp, ftemp = os.path.split(str(f))
         filename[c] = str(ftemp)
         c+=1
-
+        
+    speak('Please provide the Number of the file')
     print_dict(filename)
     t = int(ask())-11
     os.system(f_video[t])
 
 
-def player_caller():
+def player_caller(input_string):
     player()
 
 
 hash_dict = {
+    "play song":player_caller,
+    "open songs":player_caller,
+    "start songs":player_caller,
     "play musics": player_caller,
     "play movies": player_caller,
     "play videos": player_caller,
@@ -118,10 +121,13 @@ hash_dict = {
     "start musics": player_caller,
     "start movies": player_caller,
     "start videos": player_caller,
+    "open photos": player_caller,
+    "play photos":player_caller,
+    "start photos": player_caller,
+    
     }
 
 
 
-if __name__ == "__main__":
-    player_caller()
-
+# if __name__ == "__main__":
+#     player_caller()
