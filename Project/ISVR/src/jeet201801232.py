@@ -173,7 +173,7 @@ def top_process():
 
 
         listOfProcObjects = sorted(listOfProcObjects, key=lambda procObj: procObj['vms'], reverse=True)
-        print(listOfProcObjects)
+        #print(listOfProcObjects)
         for elem in listOfProcObjects[:10]:
             print(elem)
 
