@@ -31,7 +31,7 @@ def find_folder(name, path):
 
 #This function collects all the paths of the folder with  "perticular name"
 def folder_finder():
-    speak("please specify the folder name which contains Movies Videos or Musics")
+    speak("please specify the folder name which contains Movies Videos Photos or Musics")
     file_k = ask()
     file_names = [file_k.lower()]
     if(file_k[-1]!='s'): 
@@ -104,11 +104,14 @@ def player():
     os.system(f_video[t])
 
 
-def player_caller():
+def player_caller(input_string):
     player()
 
 
 hash_dict = {
+    "play song":player_caller,
+    "open songs":player_caller,
+    "start songs":player_caller,
     "play musics": player_caller,
     "play movies": player_caller,
     "play videos": player_caller,
@@ -118,6 +121,10 @@ hash_dict = {
     "start musics": player_caller,
     "start movies": player_caller,
     "start videos": player_caller,
+    "open photos": player_caller,
+    "play photos":player_caller,
+    "start photos": player_caller,
+    
     }
 
 
