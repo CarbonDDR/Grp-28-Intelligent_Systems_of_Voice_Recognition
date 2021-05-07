@@ -118,7 +118,7 @@ def weather(query):
         ind=query.split().index("in")
     else:
         ind=query.split().index("of")
-    print(ind)
+    #print(ind)
     location=query.split()[ind+1:]
     location="".join(location)
     url=weather_url+"appid="+key+"&q="+location
@@ -129,7 +129,8 @@ def weather(query):
         tem=tem-273.15
         humidity=temp["humidity"]
         desc=js["weather"][0]["description"]
-        response="The temperature in Calcius is"+str(tem) +" The humidity is"+str(humidity)+" and the weather description is"+str(desc)
+        response="The temperature in Calcius is "+str(tem) +" The humidity is "+str(humidity)+" and the weather description is "+str(desc)
+        print(response)
         speak(response)
     else:
         speak("City not found")

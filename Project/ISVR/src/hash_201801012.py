@@ -51,6 +51,7 @@ def search_wiki():
      sinwiki = ask()
      sinwiki = sinwiki.replace("wikipedia", "")
      results = wikipedia.summary(sinwiki, sentences = 3)
+     print(results)
      speak("According to Wikipedia,")
      speak(results)
 

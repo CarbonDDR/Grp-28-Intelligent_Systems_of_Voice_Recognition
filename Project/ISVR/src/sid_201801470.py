@@ -42,12 +42,15 @@ def folder_finder():
     if sysos == "Windows":
         drive_latter = os.popen("fsutil fsinfo drives").readlines()
         drive_latter = drive_latter[1].split(' ')
+        print(drive_latter)
         drive_latter.pop(0)
         drive_latter.pop(-1)
 
         for file_name in file_names:  
             for drive_path in drive_latter:  
+                print(drive_path)
                 found_paths.extend(find_folder(file_name,drive_path))
+                
     elif sysos == "Linux":
         found_paths = find_folder(file_name,"//")
     elif sysos == "Darwin":
@@ -104,7 +107,7 @@ def player():
     os.system(f_video[t])
 
 
-def player_caller():
+def player_caller(input_string):
     player()
 
 

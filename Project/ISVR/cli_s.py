@@ -6,9 +6,12 @@ About       : CLI based implementation(beta)
 def merge_dict(a, b):
     return {**a, **b}
 import os
+import sys
 import src.va as va
 import recombyte as rb
+import webbrowser
 from src.nmn import dict1
+from sys import platform
 from src.Jay_201801141 import hash_dict as h10
 from src.nishit import hash_dict as h1
 from src.jeet201801232 import hash_dict as h2
@@ -46,18 +49,21 @@ if rm or not os.path.exists(rb.DATA_STORAGE_FILENAME):
 query_list, total_words, words_dict, tot_words_dict = rb.load_data()
 command = None
 while True:
+
     command = va.ask().lower()
     if(command==""):
         continue
-        
-    if "stop" in command:
+    if "search" in command and "online" in command:
+        webbrowser.open("https://www.google.com/search?q=" +command.split("online")[1])
+        continue
+    if "stop" in command or "shut down" in command or "shutdown" in command: 
         break
     answer = rb.recombyte_q(command, query_list, words_dict, tot_words_dict)
 
-    print(answer)
+    #print(answer)
     if answer != []:
         answer[0][0] = answer[0][0].lower()
-        va.speak(answer[0][0])
+        #va.speak(answer[0][0])
         if answer[0][0] in dict1:
             dict1[answer[0][0]](command)
 
