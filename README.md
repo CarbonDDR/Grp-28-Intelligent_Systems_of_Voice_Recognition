@@ -33,7 +33,17 @@ Divyansh Khatri(201801012): Added Given Functionality
 3) Added Function to know the current date and time through voice command.
 
 Jay Shah(201801141):
-1) Open Mozilla Firefox through the Voice Command on all three platforms.
+1)Open Mozilla Firefox on all three platforms
+2) tell meaning of the given word
+3) Adjust brightness in windows4
+4) Suggest movies
+5) Suggest books 
+6) Give stats of corona in India 
+7) Tell news 
+8) Tell weather
+9) Show location in google map
+10) Tell current time
+11) unit testing and demo video(for windows)
 
 Parthav Kansagra(201801145):
 1) Open webex meeting through the voice Command 
