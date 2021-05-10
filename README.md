@@ -48,6 +48,7 @@ Jay Shah(201801141):
 Parthav Kansagra(201801145):
 1) Open webex meeting through the voice Command 
 2) Open stopwatch through the voice command
+3) open rock paper scissors game
 
 Manali Reddy(201801118):
 1) Creation and deletion of files in different format (.txt, .pdf, etc.) specified by the user
